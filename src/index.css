@@ -1,0 +1,45 @@
+html{
+    background: rgb(36,66,90);
+    background: linear-gradient(180deg, rgba(36,66,90,1) 0%, rgba(22,40,55,1) 100%);
+    color: #fcfcfc;
+   height:100vh;
+   overflow:auto;
+
+}
+
+a{
+    color: #fcfcfc;
+}
+
+li {
+
+background: rgba(255, 255, 255, 0.08);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.4px);
+-webkit-backdrop-filter: blur(3.4px);
+padding:10px
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius:0 16px 16px 0;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius:0 16px 16px 0;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius:0 16px 16px 0;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    border-radius:0 16px 16px 0;
+}

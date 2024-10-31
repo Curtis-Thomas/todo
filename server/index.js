@@ -1,38 +1,36 @@
-import express from "express";
-import cors from "cors";
-import pkg from "pg";
+// index.js
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
 
-import dotenv from "dotenv";
+import todoRouter from './routes/todoRouter.js';
+import userRouter from './routes/userRouter.js';
+import taskRoutes from './routes/taskRouter.js';
 
-import {pool} from './helper/bd.js'
+dotenv.config();
 
-import todoRouter from './routes/todoRouter.js'
-
-const port = process.env.PORT
-
-
-
+const port = process.env.PORT || 3000;
 
 const app = express();
-
-app.use((err,req,res,next) =>{
-  const statusCode = err.statusCode || 500
-  res.status(statusCode).json({error: err.message})
-})
-
-
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', todoRouter)
 
+app.use('/', todoRouter);
+app.use('/user', userRouter);
+app.use('/api', taskRoutes);
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Error occurred:', err);
+    res.status(err.statusCode || 500).json({
+        error: {
+            message: err.message || 'Internal Server Error',
+            code: err.code || 'UNKNOWN_ERROR'
+        }
+    });
+});
 
-
-
-
-
-
-
-app.listen(port);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
